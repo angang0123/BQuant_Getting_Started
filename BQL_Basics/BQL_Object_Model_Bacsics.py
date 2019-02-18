@@ -7,7 +7,7 @@ bql.Request(): Generates the request.
   `bql.Request(security or universe, data items)`
 bq.execute(): Executes the request.
   `bq.execute(request)`
-  */
+*/
   
   # Import the BQL library
 import bql
