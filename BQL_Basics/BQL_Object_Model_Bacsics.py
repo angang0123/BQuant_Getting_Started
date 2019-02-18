@@ -1,13 +1,13 @@
 #Example A: Requesting a Single Data Item
 #=============================================================================
-/*
+'''
 bq.data: Defines the data item to include in the request.
   `bq.data. + field(arguments)`
 bql.Request(): Generates the request.
   `bql.Request(security or universe, data items)`
 bq.execute(): Executes the request.
   `bq.execute(request)`
-*/
+'''
   
   # Import the BQL library
 import bql
