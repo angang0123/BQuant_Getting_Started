@@ -225,3 +225,57 @@ response = bq.execute(request)
 # Convert the response to a DataFrame
 df = response[0].df()
 df
+
+
+#Reconciliation
+
+# Import the datetime library
+import datetime
+
+# Define start and end dates
+start = datetime.date(2014, 1, 1)
+end = datetime.date(2014, 12, 31)
+
+# Set the index of the DataFrame to PERIOD_END_DATE
+df = df.set_index('PERIOD_END_DATE')
+
+# Use the pandas loc method with the
+# start and end date labels to slice 
+# the DataFrame on the index 
+# and then sum the sliced values
+df.loc[start:end].sum()
+
+
+#Fundamentals in Different Currencies
+
+# Import the required libraries
+import bql
+from collections import OrderedDict
+
+# Instantiate an object to interface with the BQL service
+bq = bql.Service()
+
+# Define a variable for the query security
+security = 'IBM US Equity'
+
+# Define the sales data items, specifying a currency
+sales_eur = bq.data.sales_rev_turn(currency='EUR') / 1000000000
+sales_usd = bq.data.sales_rev_turn(currency='USD') / 1000000000
+
+# Define the assets data items, specifying a currency
+assets_eur = bq.data.bs_tot_asset(currency='EUR') / 1000000000
+assets_usd = bq.data.bs_tot_asset(currency='USD') / 1000000000
+
+# Create an ordered dictionary with the data items and labels
+currency_fields = OrderedDict()
+currency_fields["Sales in EUR"] = sales_eur
+currency_fields["Sales USD"] = sales_usd
+currency_fields["Assets in EUR"] = assets_eur
+currency_fields["Assets USD"] = assets_usd
+
+# Generate the BQL request using security variable and data item
+request = bql.Request(security, currency_fields)
+# Execute the request
+response = bq.execute(request)
+# Convert the response to a DataFrame
+bql.combined_df(response)
