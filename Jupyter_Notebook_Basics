@@ -1,0 +1,19 @@
+#Cell Actions
+
+'''
+Action                                                                          Keyboard Shortcut
+Create a new cell above	                                                                A
+Create a new cell below	                                                                B
+Change to code cell	                                                                    Y
+Change to Markdown cell	                                                                M
+Delete cell	                                                                            DD
+Copy cell	                                                                              C
+Cut cell	                                                                              X
+Paste cell below	                                                                      V
+Merge cells 
+Merges the selected cells if more than on cell is selected, 
+otherwise merges the selected cell with the next cell.	                            Shift-M
+Split cell at cursor	                                                            Ctrl-Shift-Minus
+'''
+
+
